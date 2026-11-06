@@ -127,11 +127,9 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              {/* Lien mot de passe oublié */}
+              {/* ✅ Lien mot de passe oublié SUPPRIMÉ */}
               <div className="flex justify-end">
-                <a href="#" className="text-sm font-semibold text-sawtak-green hover:text-sawtak-green-light transition-colors">
-                  Mot de passe oublié ?
-                </a>
+                {/* Espace vide pour garder l'alignement du bouton */}
               </div>
 
               {/* Bouton Se Connecter */}
@@ -144,7 +142,7 @@ export default function LoginPage() {
               </button>
             </form>
 
-            {/* ✅ Message d'information pour les agents */}
+            {/* Message d'information pour les agents */}
             <div className="mt-8 pt-6 border-t border-gray-100 dark:border-slate-700">
               <div className="bg-blue-50 dark:bg-blue-900/20 p-3 rounded-xl flex gap-3 items-start text-blue-700 dark:text-blue-300 text-xs text-center justify-center">
                 <ShieldAlert size={18} className="shrink-0 mt-0.5" />
