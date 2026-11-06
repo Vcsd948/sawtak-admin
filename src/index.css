@@ -1,0 +1,129 @@
+@import 'leaflet/dist/leaflet.css';
+@import "tailwindcss";
+
+/* ✅ Activation du mode sombre avec la classe .dark */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ✅ Configuration des couleurs, polices et dégradés Sawtak */
+@theme {
+  --color-sawtak-green: #006B3F;
+  --color-sawtak-green-light: #00875A;
+  --color-sawtak-gold: #F4D06F;
+  --color-sawtak-dark: #0F1A14;
+  --color-sawtak-gray: #F7FAF8;
+  
+  /* Polices */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Playfair Display', serif;
+
+  /* Dégradés (identiques à Flutter) */
+  --background-image-sawtak-gradient: linear-gradient(135deg, #004D2C, #006B3F, #00875A);
+  --background-image-sawtak-gold: linear-gradient(135deg, #F4D06F, #D4A017);
+}
+
+@layer base {
+  /* ✅ Styles de base pour le corps */
+  body {
+    background-color: var(--color-sawtak-gray);
+    color: #0F1A14;
+    -webkit-font-smoothing: antialiased;
+    @apply transition-colors duration-300;
+  }
+  
+  /* ✅ Fond sombre quand la classe .dark est active */
+  .dark body {
+    background-color: #0B1310; /* Un vert très sombre pour le mode nuit */
+    color: #F1F5F9;
+  }
+
+  /* Appliquer Playfair au titre Sawtak */
+  .font-logo {
+    font-family: var(--font-display);
+  }
+
+  /* ✅ GESTION DU RTL (ARABE) : On change la police et l'alignement */
+  [dir="rtl"] body {
+    font-family: 'Tajawal', 'Cairo', sans-serif; /* Police arabe moderne */
+  }
+  
+  [dir="rtl"] input, 
+  [dir="rtl"] textarea, 
+  [dir="rtl"] select {
+    text-align: right;
+  }
+}
+
+/* ✅ Effet Glassmorphism pour les cartes (Design Premium) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 8px 32px rgba(0, 107, 63, 0.05);
+}
+
+.dark .glass-card {
+  background: rgba(26, 42, 35, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* ✅ Effet de rebond sur les boutons */
+.btn-bounce {
+  transition: transform 0.1s ease-out, box-shadow 0.2s;
+}
+.btn-bounce:active {
+  transform: scale(0.95);
+}
+
+/* ✅ Animation d'apparition fluide (Fade & Slide) */
+@keyframes fadeInUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(20px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+/* ✅ Scrollbar personnalisée (look moderne) */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94A3B8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* ✅ Correction de l'affichage de Leaflet dans le mode sombre */
+.dark .leaflet-container {
+  background: #1e293b;
+}
+
+.dark .leaflet-tile {
+  filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3) brightness(0.7);
+}
